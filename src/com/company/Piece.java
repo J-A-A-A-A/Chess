@@ -35,6 +35,12 @@ public class Piece {
         return ChessUtils.columnToLetter(column) + ChessUtils.rowToNumber(row);
     }
 
+    // set a new position for the piece
+    public void setPosition(String newPosition){
+        row = ChessUtils.getRowFromPosition(newPosition);
+        column = ChessUtils.getColumnFromPosition(newPosition);
+
+    }
     public boolean isValidMove(String TargetPosition){
         return true;
     }

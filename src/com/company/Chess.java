@@ -13,6 +13,7 @@ public class Chess {
             board[1][c] = new Piece(1,c,false);
             board[6][c] = new Piece(6,c,true);
         }
+        board[0][4] = new King(0,4,false);
     }
 
     //print the current board layout
@@ -22,7 +23,7 @@ public class Chess {
                 if (board[r][c] != null) {
                     System.out.print(board[r][c].getSymbol() + " ");
                 } else {
-                    System.out.print("    ");
+                    System.out.print("  ");
                 }
             }
             System.out.println();
@@ -53,6 +54,16 @@ public class Chess {
         }
         if (validMove) {
             System.out.println(toMove.getSymbol() + " moves to " + endPosition);
+            int startRow = ChessUtils.getRowFromPosition(startPosition);
+            int startColumn = ChessUtils.getColumnFromPosition(startPosition);
+
+            int targetRow = ChessUtils.getRowFromPosition(endPosition);
+            int targetColumn = ChessUtils.getColumnFromPosition(endPosition);
+            // updating the board
+            board[targetRow][targetColumn] = board[startRow][startColumn];
+            board[startRow][startColumn] = null;
+            toMove.setPosition(endPosition);
+
         } else {
             System.out.println("You can't do that!");
         }
