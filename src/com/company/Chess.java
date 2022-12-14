@@ -28,7 +28,9 @@ public class Chess {
 
     // print the current board layout
     public void display() {
+        System.out.println("   A B C D E F G H");
         for (int r=0; r<8; r++) {
+            System.out.print(r+1 + "  ");
             for (int c=0; c<8; c++) {
                 if (board[r][c] != null) {
                     System.out.print(board[r][c].getSymbol() + " ");
@@ -70,6 +72,7 @@ public class Chess {
                 }
             }
             System.out.println();
+            //if (getPieceAt(endPosition).getSymbol() == getPieceAt(startPosition).getSymbol())
             // convert position to row and column
             int startRow = ChessUtils.getRowFromPosition(startPosition);
             int startColumn = ChessUtils.getColumnFromPosition(startPosition);
