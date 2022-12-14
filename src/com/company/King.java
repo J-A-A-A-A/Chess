@@ -5,39 +5,32 @@ import java.util.Scanner;
 public class King extends Piece{
     private boolean inCheck;
 
-    public King (String position, boolean isBlack){
-        super(position,isBlack);
+    public King(String position, boolean isBlack) {
+        super(position, isBlack);
         symbol = 'k';
         inCheck = false;
     }
 
-    public King (int row, int column, boolean isBlack){
-        super(row,column,isBlack);
-        symbol = 'k';
-        inCheck = false;
-    }
-
-
-
-    // kings can move in 1 square in any direction
+    // Kings can move in 1 square in any direction
     public boolean isValidMove(String targetPosition) {
-
+        // convert position to row and column
         int startRow = ChessUtils.getRowFromPosition(getPosition());
         int startColumn = ChessUtils.getColumnFromPosition(getPosition());
-
         int targetRow = ChessUtils.getRowFromPosition(targetPosition);
         int targetColumn = ChessUtils.getColumnFromPosition(targetPosition);
-        // positions can be the same
-        if (targetRow == startRow && targetColumn == startColumn){
+        // can't stand still
+        if (targetRow == startRow && targetColumn == startColumn) {
             return false;
         }
-
-        if (Math.abs(targetRow - startRow) > 1 ){
+        // can't move more than 1 square in any direction
+        if (Math.abs(startRow - targetRow) > 1) {
             return false;
         }
-        if (Math.abs(targetColumn - startColumn) > 1 ){
+        if (Math.abs(startColumn - targetColumn) > 1) {
             return false;
         }
+        // otherwise we cool
         return true;
     }
 }
+
